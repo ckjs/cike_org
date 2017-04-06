@@ -2,9 +2,11 @@ import React, { PropTypes } from 'react';
 import TweenOne from 'rc-tween-one';
 import { Menu } from 'antd';
 
-import './nav.less';
+import { Anchor } from 'antd';
+const { Link } = Anchor;
 
 const Item = Menu.Item;
+
 
 class Header extends React.Component {
   constructor(props) {
@@ -24,29 +26,21 @@ class Header extends React.Component {
     const props = { ...this.props };
     const isMode = props.isMode;
     delete props.isMode;
-    
-    const navData = { menu1: '首页', menu2: '产品服务', menu3: '关于我们' };;
+    const navData = { menu1: '', menu2: '导航二', menu3: '导航三', contact: 'contact' };;
     const navChildren = Object.keys(navData)
-      .map((key, i) => (<Item key={i}>{navData[key]}</Item>));
+      .map((key, i) => (<Link key={i} href={`#${key}`} title={navData[key]}/>));
     return (<TweenOne
-      component="header"
       animation={{ opacity: 0, type: 'from' }}
-      {...props}
-    >
-      <TweenOne
-        className={`${this.props.className}-logo`}
-        animation={{ x: -30, type: 'from', ease: 'easeOutQuad' }}
-        id={`${this.props.id}-logo`}
-      >
-        <img width="100%" src="https://os.alipayobjects.com/rmsportal/mlcYmsRilwraoAe.svg" />
-      </TweenOne>
+      {...props}>
+        <Anchor>
+          {navChildren}
+        </Anchor>
     </TweenOne>);
   }
 }
 
 Header.propTypes = {
   className: PropTypes.string,
-  dataSource: PropTypes.object,
   id: PropTypes.string,
 };
 

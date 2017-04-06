@@ -49,7 +49,7 @@ class Home extends React.Component {
         <Content3 isMode={this.state.isMode} />
         <Content4 isMode={this.state.isMode} />
         <Content5 isMode={this.state.isMode} />
-        <Footer isMode={this.state.isMode} />
+        <Footer id="contact" isMode={this.state.isMode} />
       </div>
     );
   }
